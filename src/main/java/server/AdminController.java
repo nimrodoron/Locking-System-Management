@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AdminController {
 
+    public AdminController()
+    {}
+
     @RequestMapping("/service")
     @Secured("ROLE_ADMIN")
     public String greeting(@RequestParam(value="name") String name) {
