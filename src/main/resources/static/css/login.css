@@ -79,7 +79,7 @@ a.back{
 }
 .form_wrapper h3{
     padding:20px 30px 20px 30px;
-    background-color:#444;
+    background-color:#000;
     color:#fff;
     font-size:25px;
     border-bottom:1px solid #ddd;
@@ -149,7 +149,7 @@ form.login{
     background:#feffef;
 }
 .form_wrapper .bottom{
-    background-color:#444;
+    background-color:#000;
     border-top:1px solid #ddd;
     margin-top:20px;
     clear:both;
