@@ -1,0 +1,12 @@
+target/*
+Resources/*.tsv
+.idea/
+src/main/webapp/.idea/
+src/main/webapp/WEB-INF/
+.classpath
+.project
+.settings/
+final-project.iml
+*.swp
+/bin/
+/target/
