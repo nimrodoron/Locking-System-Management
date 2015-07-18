@@ -8,9 +8,9 @@
 		<version>1.3.0.BUILD-SNAPSHOT</version>
 		<relativePath>poms/samples</relativePath>
 	</parent>
-	<artifactId>spring-boot-sample-web-secure</artifactId>
-	<name>Spring Boot Web Secure Sample</name>
-	<description>Spring Boot Web Secure Sample</description>
+	<artifactId>locking-system-management</artifactId>
+	<name>Locking system Managemnt</name>
+	<description>Locking system Managemnt</description>
 	<url>http://projects.spring.io/spring-boot/</url>
 	<organization>
 		<name>Pivotal Software, Inc.</name>
