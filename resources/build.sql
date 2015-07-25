@@ -1,7 +1,7 @@
 CREATE USER 'lockSysAdmin'@'localhost' IDENTIFIED BY 'db_lock_sys_mgr';
-
 CREATE DATABASE db_lock_sys_mgr;
 use db_lock_sys_mgr;
+GRANT ALL ON db_lock_sys_mgr.* TO 'lockSysAdmin'@'localhost';
 
 CREATE TABLE db_lock_sys_mgr.user(
 `id` int(11) NOT NULL,
