@@ -28,7 +28,7 @@ public class AppServiceImlp implements AcpService {
 
     @Override
     public Collection<Acp> getAllAcps() {
-        LOGGER.debug("Getting all users");
+        LOGGER.debug("Getting all acp's");
         return acpRepository.findAll();
     }
 }

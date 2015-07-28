@@ -1,6 +1,6 @@
 require.config({
    paths: {
-       jquery: 'libs/jquery-1.11.2',
+       jquery: 'libs/jquery-1.11.2.js',
        underscore: 'libs/underscore',
        backbone: 'libs/backbone',
        bootstrap: 'libs/bootstrap.min.js',

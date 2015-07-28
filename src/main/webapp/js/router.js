@@ -3,7 +3,7 @@
  */
 // Filename: router.js
 define([
-    'libs/jquery-1.11.2',
+    'libs/jquery-1.11.2.js',
     'libs/underscore',
     'libs/backbone',
     'MainIndexView'
