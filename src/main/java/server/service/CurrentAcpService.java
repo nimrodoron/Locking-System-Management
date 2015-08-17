@@ -14,5 +14,5 @@ import java.util.Map;
 public interface CurrentAcpService {
 
     void InitAcpMap();
-
+    void Run();
 }

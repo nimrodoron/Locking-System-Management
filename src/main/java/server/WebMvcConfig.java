@@ -1,6 +1,8 @@
 package server;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
+import org.reactivestreams.Publisher;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -15,11 +17,13 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import reactor.Environment;
+import reactor.bus.EventBus;
 
 import java.util.Locale;
+import java.util.concurrent.CountDownLatch;
 
 @EnableAutoConfiguration
-@ComponentScan
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled = true, proxyTargetClass = true)
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
@@ -47,5 +51,5 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         lci.setParamName("lang");
         return lci;
     }
-
 }
+

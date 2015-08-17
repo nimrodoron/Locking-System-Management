@@ -1,6 +1,6 @@
 package server.domain;
 
-public enum Status {
+public enum AcpStatus {
 
     DISABLED,
     ENABLED,

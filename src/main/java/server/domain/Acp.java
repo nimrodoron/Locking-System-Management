@@ -19,7 +19,7 @@ public class Acp {
 
     @Column(name = "enabled", nullable = false)
     @Enumerated(EnumType.ORDINAL)
-    private Status enabled;
+    private AcpStatus enabled;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -51,11 +51,11 @@ public class Acp {
         this.name = name;
     }
 
-    public Status getEnabled() {
+    public AcpStatus getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(Status enabled) {
+    public void setEnabled(AcpStatus enabled) {
         this.enabled = enabled;
     }
 
