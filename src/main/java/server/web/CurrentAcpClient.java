@@ -1,16 +1,30 @@
-package server.service;
+package server.web;
 
-import org.springframework.stereotype.Service;
-import server.domain.CurrentAcp;
-import server.domain.CurrentAcpInfo;
+import org.springframework.web.socket.WebSocketSession;
+import server.domain.Acp;
 
 /**
  * Created by nimrodoron on 8/17/15.
  */
-@Service
-public class CurrentAcpClientImpl implements CurrentAcpClient {
+public class CurrentAcpClient {
 
-    public void SetCurrentAcpInfo(CurrentAcp currentAcp) {
+    private final WebSocketSession session;
+    private final Acp acp;
+
+    public Acp getAcp() {
+        return acp;
+    }
+
+    public CurrentAcpClient(WebSocketSession session, Acp client) {
+        this.session = session;
+        this.acp = client;
+    }
+
+    public void sendMessage(String msg) throws Exception {
+
+    }
+
+/*    public void SetCurrentAcpInfo(CurrentAcp currentAcp) {
         String reponseString = requestInfo(currentAcp);
         if (reponseString != null) {
             currentAcp.setInfo(parse(reponseString));
@@ -32,5 +46,5 @@ public class CurrentAcpClientImpl implements CurrentAcpClient {
 
     private CurrentAcpInfo parse(String reponseString) {
         return null;
-    }
+    }*/
 }

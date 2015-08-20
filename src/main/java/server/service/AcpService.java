@@ -11,4 +11,5 @@ import java.util.Collection;
 public interface AcpService {
 
     public Collection<Acp> getAllAcps();
+    public Acp getAcpById(long id);
 }
