@@ -5,15 +5,17 @@ define(
     [   'jquery',
         "underscore",
         "backbone",
-        "text!templates/landing-page-template.html"
-    ], function ($, _, Backbone, LandingPageTemplate) {
+        "text!templates/landing-page-template.html",
+        "sbadmin"
+    ], function ($, _, Backbone, LandingPageTemplate, sbadmin) {
         var MainIndexView = Backbone.View.extend({
-            el: ".body-container",
+            el: ".wrapper",
             events: {
                 'click .submit': 'formSubmitted'
             },
             initialize: function () {
                 this.render();
+                this.$el.find(".sidebar-nav").metisMenu();
 
             },
             formSubmitted: function () {

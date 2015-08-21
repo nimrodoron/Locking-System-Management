@@ -6,6 +6,8 @@ require.config({
        bootstrap: 'libs/bootstrap.min',
        text: 'libs/text',
        async: 'libs/requirejs-plugins/src/async',
+       metisMenu: 'libs/metisMenu',
+       sbadmin: 'libs/sb-admin-2',
 
        //views
        MainIndexView: 'views/main',
@@ -25,6 +27,9 @@ require.config({
         },
         'bootstrap':{
             deps:['jquery']
+        },
+        'sbadmin':{
+            deps:['jquery','bootstrap','metisMenu']
         }
 
     }

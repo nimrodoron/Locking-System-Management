@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+
+
 <title th:text="${title}">Title</title>
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
 	href="../../css/bootstrap.min.css" />
-	<link rel="stylesheet" th:href="@{/css/style.css}"
-		  href="../../css/style.css" />
-
+	
+	<link rel="stylesheet" th:href="@{/css/sb-admin-2.css}"
+	href="../../css/sb-admin-2.css" />
+	
+	<link rel="stylesheet" th:href="@{/css/metisMenu.min.css}"
+	href="../../css/metisMenu.min.css" />
+	
+	<link rel="stylesheet" th:href="@{/css/font-awesome.css}"
+	href="../../css/font-awesome.css"  type="text/css" />
+	
 <script src="../../js/libs/require.js" th:src="@{/js/libs/require.js}"
 		data-main="../../js/main"/>
 
@@ -16,40 +25,7 @@
 </head>
 <body>
 
-	<!--<div class="container">
-		<div class="navbar">
-			<div class="navbar-inner">
-				<a class="brand" href="http://www.thymeleaf.org"> Locking System Management </a>
-				<ul class="nav">
-					<li><a th:href="@{/}" href="home.html"> Dashboard </a></li>
-				</ul>
-			</div>
-		</div>-->
-
-	<nav class="navbar navbar-inverse" id="mainNavbar">
-		<div class="container-fluid" id="conFluid">
-
-			<div>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">הגדרות מתקדמות</a></li>
-					<li class="active"><a href="#">לוח בקרה</a></li>
-				</ul>
-			</div>
-			<div class="navbar-header" id="headerNav">
-
-				<a class="navbar-brand" href="#">
-					<img alt="Brand" src="../../images/image.png" height="52" width="52"/>
-				</a>
-				<a class="navbar-brand" href="#">מערכת לניהול מנעולים</a>
-			</div>
-		</div>
-	</nav>
-
-	<div class="body-container">
+	<div class="wrapper" id="wrapper">
 	</div>
-<!--        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>s-->
-
 </body>
 </html>
