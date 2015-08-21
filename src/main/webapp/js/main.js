@@ -1,11 +1,11 @@
 require.config({
    paths: {
-       jquery: '../js/libs/jquery-1.11.2',
-       underscore: 'js/libs/underscore',
-       backbone: 'js/libs/backbone',
-       bootstrap: 'js/libs/bootstrap.min.js',
+       jquery: 'libs/jquery-1.11.2',
+       underscore: 'libs/underscore',
+       backbone: 'libs/backbone',
+       bootstrap: 'libs/bootstrap.min',
        text: 'libs/text',
-       async: 'js/libs/requirejs-plugins/src/async',
+       async: 'libs/requirejs-plugins/src/async',
 
        //views
        MainIndexView: 'views/main',
@@ -35,7 +35,7 @@ require.config({
 //TODO - get API key from config var
 
 require([
-    'router'
+    'MainRouter'
 
 ], function(MainRouter){
     MyGlobal.routers = {};

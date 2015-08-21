@@ -2,11 +2,11 @@
  * Created by Amir on 14/03/2015.
  */
 define(
-    [   'libs/backbone',
-        "jquery",
-        "text!templates/landing-page-template.html",
-        'libs/backbone',
-    ], function (Backbone, $, LandingPageTemplate) {
+    [   'jquery',
+        "underscore",
+        "backbone",
+        "text!templates/landing-page-template.html"
+    ], function ($, _, Backbone, LandingPageTemplate) {
         var MainIndexView = Backbone.View.extend({
             el: ".body-container",
             events: {

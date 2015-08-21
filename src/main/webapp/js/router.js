@@ -3,10 +3,10 @@
  */
 // Filename: router.js
 define([
-    'libs/jquery-1.11.2.js',
-    'libs/underscore',
-    'libs/backbone',
-    'MainIndexView'
+    'jquery',
+    'underscore',
+    'backbone',
+    'views/main'
 ], function($, _, Backbone, MainIndexView){
     var AppRouter = Backbone.Router.extend({
         routes: {
