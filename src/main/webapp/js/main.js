@@ -10,7 +10,11 @@ require.config({
        sbadmin: 'libs/sb-admin-2',
 
        //views
-       MainIndexView: 'views/main',
+       NavView: 'views/nav',
+       DashboardPageView: 'views/pages/dashboard',
+       LockPageView: 'views/pages/lock',
+       MapPageView: 'views/pages/map',
+       TablePageView: 'views/pages/table',
 
        //routers
        MainRouter: 'router'
@@ -27,6 +31,9 @@ require.config({
         },
         'bootstrap':{
             deps:['jquery']
+        },
+        'metisMenu':{
+            deps:['jquery','bootstrap']
         },
         'sbadmin':{
             deps:['jquery','bootstrap','metisMenu']

@@ -6,10 +6,10 @@ define(
         "underscore",
         "backbone",
         "text!templates/landing-page-template.html",
-        "sbadmin"
-    ], function ($, _, Backbone, LandingPageTemplate, sbadmin) {
+        "metisMenu"
+    ], function ($, _, Backbone, LandingPageTemplate) {
         var MainIndexView = Backbone.View.extend({
-            el: ".wrapper",
+            el: ".nav-wrapper",
             events: {
                 'click .submit': 'formSubmitted'
             },
@@ -17,15 +17,6 @@ define(
                 this.render();
                 this.$el.find(".sidebar-nav").metisMenu();
 
-            },
-            formSubmitted: function () {
-                $.ajax({
-                    url:'service?name='+$('.form-control').val()
-                    }).done(function(data){
-                    $('.form-control').set(data);
-                        $('.form-control').popover({content:data,animation:false});
-                        $('.form-control').popover('show');
-                    }.bind(this));
             },
             render: function () {
                 var template = _.template(LandingPageTemplate);
