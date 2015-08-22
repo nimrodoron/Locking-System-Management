@@ -14,6 +14,11 @@ define(
                 'click .submit': 'formSubmitted'
             },
             initialize: function () {
+                MyGlobal.cssUtils.injectCss("bootstrap.min.css");
+                MyGlobal.cssUtils.injectCss("sb-admin-2.css");
+                MyGlobal.cssUtils.injectCss("metisMenu.min.css");
+                MyGlobal.cssUtils.injectCss("font-awesome.css");
+
                 this.render();
                 this.$el.find(".sidebar-nav").metisMenu();
 

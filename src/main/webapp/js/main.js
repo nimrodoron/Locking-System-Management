@@ -17,8 +17,10 @@ require.config({
        TablePageView: 'views/pages/table',
 
        //routers
-       MainRouter: 'router'
-    	   
+       MainRouter: 'router',
+
+       //utils
+       cssUtils: 'cssUtils'
    },
 
     shim:{
@@ -47,9 +49,11 @@ require.config({
 //TODO - get API key from config var
 
 require([
-    'MainRouter'
+    'MainRouter',
+    'cssUtils'
 
-], function(MainRouter){
+], function(MainRouter,cssUtils){
     MyGlobal.routers = {};
     MyGlobal.routers.mainRouter = new MainRouter();
+    MyGlobal.cssUtils.setPath('css/');
 });
