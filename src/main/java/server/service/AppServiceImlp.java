@@ -10,6 +10,7 @@ import server.repository.AcpRepository;
 import server.repository.UserRepository;
 
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  * Created by nimrodoron on 7/19/15.
@@ -34,7 +35,11 @@ public class AppServiceImlp implements AcpService {
 
     @Override
     public Acp findOneById(int id) {
-        return acpRepository.findOne((long)id);
+        Optional<Acp> acp = acpRepository.findOneById(id);
+        if (acp.isPresent())
+            return acp.get();
+        else
+            return null;
     }
 
 /*    @Override

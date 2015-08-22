@@ -13,4 +13,6 @@ import java.util.Optional;
 public interface AcpRepository extends JpaRepository<Acp, Long> {
 
     //public List<Acp> getAllAcps();
+
+    Optional<Acp> findOneById(int id);
 }

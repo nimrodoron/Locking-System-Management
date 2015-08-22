@@ -27,7 +27,7 @@ public class CurrentAcpHandler extends TextWebSocketHandler {
 
     private static final long IDENTIFY_TIME = 3000;
 
-    //@Autowired
+    @Autowired
     AcpService acpService;
 
     // TODO add logger and write to log on excpetions
@@ -72,7 +72,7 @@ public class CurrentAcpHandler extends TextWebSocketHandler {
     }
 
     public synchronized CurrentAcpClient getCurrentAcpClientById(int id) {
-        Integer key = Integer.valueOf(5);
+        Integer key = Integer.valueOf(id);
         if (acpClients.containsKey(key)) {
             return acpClients.get(key);
         }
@@ -84,6 +84,7 @@ public class CurrentAcpHandler extends TextWebSocketHandler {
         Acp acp = acpService.findOneById(messageClass.getId());
         if (acp != null && messageClass.getMac().equals(acp.getMac())) {
             CurrentAcp currentAcp = new CurrentAcp(acp);
+            acpClients.put(Integer.valueOf(currentAcp.getId()),new CurrentAcpClient(this.session,currentAcp));
         }
         else {
             session.close();
@@ -91,9 +92,10 @@ public class CurrentAcpHandler extends TextWebSocketHandler {
     }
 
     @Override
-    public void afterConnectionClosed(WebSocketSession session, CloseStatus status)
-            throws Exception {
-       removeCurrentAcp(this.currentAcpClient.getCurrentAcp().getId());
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
+        try {
+            removeCurrentAcp(this.currentAcpClient.getCurrentAcp().getId());
+        } catch (Exception Ex) {}
     }
 
     private synchronized void removeCurrentAcp(int currentAcpId) {

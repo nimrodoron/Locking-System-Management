@@ -67,7 +67,7 @@ public class MessageFactory {
                     case ("int") :
                         field.set(object, fieldValue.getAsInt());
                         break;
-                    case("Stinrg") :
+                    case("java.lang.String") :
                         field.set(object, fieldValue.getAsString());
                 }
                 return true;
