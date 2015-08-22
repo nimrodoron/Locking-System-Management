@@ -33,8 +33,13 @@ public class AppServiceImlp implements AcpService {
     }
 
     @Override
+    public Acp findOneById(int id) {
+        return acpRepository.findOne((long)id);
+    }
+
+/*    @Override
     public Acp getAcpById(long id) {
         LOGGER.debug("Get Acp By Id");
         return acpRepository.findOne(id);
-    }
+    }*/
 }

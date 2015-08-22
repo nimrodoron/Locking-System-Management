@@ -1,7 +1,10 @@
 package server.web;
 
+import org.omg.CORBA.Current;
+import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import server.domain.Acp;
+import server.domain.CurrentAcp;
 
 /**
  * Created by nimrodoron on 8/17/15.
@@ -9,19 +12,25 @@ import server.domain.Acp;
 public class CurrentAcpClient {
 
     private final WebSocketSession session;
-    private final Acp acp;
 
-    public Acp getAcp() {
-        return acp;
+    public CurrentAcp getCurrentAcp() {
+        return currentAcp;
     }
 
-    public CurrentAcpClient(WebSocketSession session, Acp client) {
+    public void setCurrentAcp(CurrentAcp currentAcp) {
+        this.currentAcp = currentAcp;
+    }
+
+    private CurrentAcp currentAcp;
+
+
+    public CurrentAcpClient(WebSocketSession session, CurrentAcp currentAcp) {
         this.session = session;
-        this.acp = client;
+        this.currentAcp = currentAcp;
     }
 
     public void sendMessage(String msg) throws Exception {
-
+       this.session.sendMessage(new TextMessage(msg));
     }
 
 /*    public void SetCurrentAcpInfo(CurrentAcp currentAcp) {
