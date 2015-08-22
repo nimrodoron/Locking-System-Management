@@ -19,6 +19,6 @@ define(
                 var template = _.template(DashboardPageTemplate);
                 this.$el.html(template());
             }
-        })
+        });
         return dashboardView;
     });

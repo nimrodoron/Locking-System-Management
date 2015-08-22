@@ -8,6 +8,7 @@ require.config({
        async: 'libs/requirejs-plugins/src/async',
        metisMenu: 'libs/metisMenu',
        sbadmin: 'libs/sb-admin-2',
+       olMap: 'libs/ol',
 
        //views
        NavView: 'views/nav',
