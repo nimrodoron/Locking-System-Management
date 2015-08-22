@@ -27,6 +27,20 @@ public class Acp {
     @Column(name = "lat")
     private Long lat;
 
+    @Column(name = "lon")
+    private Long lon;
+
+    @Column(name = "mac", nullable = false)
+    private String mac;
+
+    public String getMac() {
+        return mac;
+    }
+
+    public void setMac(String mac) {
+        this.mac = mac;
+    }
+
     public Long getLon() {
         return lon;
     }
@@ -74,8 +88,5 @@ public class Acp {
     public void setId(int id) {
         this.id = id;
     }
-
-    @Column(name = "lon")
-    private Long lon;
 
 }
