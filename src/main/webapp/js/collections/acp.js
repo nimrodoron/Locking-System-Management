@@ -5,11 +5,26 @@ define(
     [   'jquery',
         "underscore",
         "backbone",
-        "AcpModel"
+        "AcpModel",
+        "AcpCrudService"
     ], function ($, _, Backbone, AcpModel) {
 
         return  Backbone.Collection.extend({
-            model: AcpModel
+            model: AcpModel,
+            initialize: function() {
+                this.on('add', function(model) {
+                    console.log('something got added');
+                });
+                // This will be called when an item is removed, popped or shifted
+                this.on('remove',  function(model) {
+                    console.log('something got removed');
+                });
+                // This will be called when an item is updated
+                this.on('change', function(model) {
+                    console.log('something got changed');
+                });
+
+            }
         });
 
     });

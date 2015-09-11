@@ -17,11 +17,17 @@ require.config({
        MapPageView: 'views/pages/map',
        TablePageView: 'views/pages/table',
 
+       //collections
+       AcpCollection: 'collections/acp',
        //routers
        MainRouter: 'router',
 
+       //Model
+       AcpModel: 'model/acp',
+
        //utils
-       cssUtils: 'cssUtils'
+       cssUtils: 'cssUtils',
+       AcpCrudService: 'services/AcpCrudService'
    },
 
     shim:{

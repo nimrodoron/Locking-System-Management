@@ -17,23 +17,38 @@
                         <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                             <thead>
                             <tr>
+                                <th>Enabled</th>
+                                <th>Id</th>
                                 <th>Name</th>
                                 <th>Location</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th>Port 1</th>
+                                <th>Port 2</th>
+                                <th>Port 3</th>
+                                <th>Port 4</th>
+                                <th>Port 5</th>
                             </tr>
+                            <% _.each(connectedAcps, function(acp) { %>
                             <tr class="even gradeC">
-                                <td>Bazel</td>
-                                <td>Lat/Long</td>
-                                <td>UP</td>
+
+                                <% if (acp.disabled == "true"){ %>
+                                <td style="background-color: red">
+                                    <% } else { %>
+                                <td style="background-color: greenyellow">
+                                    <% } %>
+
+                                </td>
+                                <td><%= acp.id %></td>
+                                <td><%= acp.name %></td>
+                                <td><%= acp.name %></td>
+                                <td><%= acp.ports.port1 %></td>
+                                <td><%= acp.ports.port2 %></td>
+                                <td><%= acp.ports.port3 %></td>
+                                <td><%= acp.ports.port4 %></td>
+                                <td><%= acp.ports.port5 %></td>
+
                                 <td>Action</td>
                             </tr>
-                            <tr class="odd gradeA">
-                                <td>Tzahala</td>
-                                <td>Lat/Long</td>
-                                <td>Down</td>
-                                <td>Action</td>
-                            </tr>
+                            <% }); %>
                             </tbody>
                         </table>
                     </div>

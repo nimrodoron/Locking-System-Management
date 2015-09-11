@@ -10,8 +10,9 @@ define([
     'DashboardPageView',
     'LockPageView',
     'MapPageView',
-    'TablePageView'
-], function($, _, Backbone, NavView, DashboardPageView, LockPageView, MapPageView, TablePageView){
+    'TablePageView',
+    'AcpCrudService'
+], function($, _, Backbone, NavView, DashboardPageView, LockPageView, MapPageView, TablePageView, AcpCrudService){
     var AppRouter = Backbone.Router.extend({
         routes: {
             "dashboard": "renderDashboard",
@@ -22,16 +23,19 @@ define([
         initialize: function (options){
             this.NavView = new NavView();
             this.pageViews = {};
+            this.Collections = {};
             Backbone.history.start();
+
         },
         renderMap: function(){
             this.renderView(MapPageView,"map");
         },
         renderTable: function(){
-            this.renderView(TablePageView,"dashboard");
+            this.renderView(TablePageView,"table");
+
         },
         renderDashboard: function(){
-            this.renderView(DashboardPageView,"table");
+            this.renderView(DashboardPageView,"dashboard");
         },
         renderView: function(view,name){
             if (this.pageViews[name]){

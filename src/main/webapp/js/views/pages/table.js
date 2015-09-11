@@ -6,18 +6,28 @@ define(
         "underscore",
         "backbone",
         "text!templates/pages/table.html",
-    ], function ($, _, Backbone, TablePageTemplate, sbadmin) {
-        var dashboardView = Backbone.View.extend({
+        "AcpCrudService"
+    ], function ($, _, Backbone, TablePageTemplate, AcpCrudService) {
+        return Backbone.View.extend({
+            acps: null,
             el: ".page-wrapper",
             events: {
                 'click .submit': 'formSubmitted'
             },
-            initialize: function () {
+            initialize: function (options) {
+
+
+                this.render();
             },
             render: function () {
                 var template = _.template(TablePageTemplate);
-                this.$el.html(template());
+                AcpCrudService.getService().getAllAcps().done(function(acpCollection){
+                    this.acps = acpCollection;
+                    this.$el.html(template({"connectedAcps": this.acps.toJSON()}));
+
+                }.bind(this));
+
             }
-        })
-        return dashboardView;
+
+    });
     });
