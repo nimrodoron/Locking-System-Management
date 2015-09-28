@@ -62,7 +62,7 @@ public class CurrentAcpClient {
     }
 
     public void sendAcpAction(int acpId, int port, MODE mode) throws Exception {
-        if (this.getCurrentAcp().getPorts()[port] != mode) {
+        if (this.getCurrentAcp().getPorts()[port-1] != mode) {
             CurrentAcpControlSpec currentAcpControlSpec = (CurrentAcpControlSpec) MessageFactory.createEmptyMessage("server.spec.CurrentAcpControlSpec");
             currentAcpControlSpec.setControlNumber(port);
             currentAcpControlSpec.setNewMode(mode);
