@@ -13,7 +13,7 @@ import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 import org.springframework.web.socket.handler.PerConnectionWebSocketHandler;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
-import server.handler.CurrentAcpHandler;
+import server.handler.AcpHandler;
 
 import static reactor.bus.selector.Selectors.$;
 
@@ -45,7 +45,7 @@ public class Application extends SpringBootServletInitializer
 
     @Bean
     public WebSocketHandler currentAcpInfoWebSocketHandler() {
-        return new PerConnectionWebSocketHandler(CurrentAcpHandler.class);
+        return new PerConnectionWebSocketHandler(AcpHandler.class);
     }
 
     @Bean

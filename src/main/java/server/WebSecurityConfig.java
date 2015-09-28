@@ -37,6 +37,10 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+
+		// Todo - Remove it
+		http.csrf().disable();
+
 		http.authorizeRequests().antMatchers("/CurrentAcpInfo").permitAll().antMatchers("/CurrentAcpInfo/*").permitAll().anyRequest().fullyAuthenticated().and().formLogin()
 				.loginPage("/login").failureUrl("/login?error").permitAll().and()
 				.logout().permitAll();

@@ -18,6 +18,7 @@
                             <thead>
                             <tr>
                                 <th>Enabled</th>
+                                <th>Status</th>
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Location</th>
@@ -30,7 +31,14 @@
                             <% _.each(connectedAcps, function(acp) { %>
                             <tr class="even gradeC">
 
-                                <% if (acp.disabled == "true"){ %>
+                                <% if (acp.enabled == "DISABLED"){ %>
+                                <td style="background-color: red">
+                                    <% } else { %>
+                                <td style="background-color: greenyellow">
+                                    <% } %>
+
+                                </td>
+                                <% if (acp.acpclientstatus === "OFFLINE"){ %>
                                 <td style="background-color: red">
                                     <% } else { %>
                                 <td style="background-color: greenyellow">
@@ -40,12 +48,36 @@
                                 <td><%= acp.id %></td>
                                 <td><%= acp.name %></td>
                                 <td><%= acp.name %></td>
-                                <td><%= acp.ports.port1 %></td>
-                                <td><%= acp.ports.port2 %></td>
-                                <td><%= acp.ports.port3 %></td>
-                                <td><%= acp.ports.port4 %></td>
-                                <td><%= acp.ports.port5 %></td>
 
+                                <% if (acp.ports[0] === "CLOSE"){ %>
+                                <td style="background-color: red">
+                                    <% } else { %>
+                                <td style="background-color: greenyellow">
+                                    <% } %>
+
+                                <% if (acp.ports[1] === "CLOSE"){ %>
+                                <td style="background-color: red">
+                                    <% } else { %>
+                                <td style="background-color: greenyellow">
+                                    <% } %>
+
+                                <% if (acp.ports[2] === "CLOSE"){ %>
+                                <td style="background-color: red">
+                                    <% } else { %>
+                                <td style="background-color: greenyellow">
+                                    <% } %>
+
+                                <% if (acp.ports[3] === "CLOSE"){ %>
+                                <td style="background-color: red">
+                                    <% } else { %>
+                                <td style="background-color: greenyellow">
+                                    <% } %>
+
+                                <% if (acp.ports[4] === "CLOSE"){ %>
+                                <td style="background-color: red">
+                                    <% } else { %>
+                                <td style="background-color: greenyellow">
+                                    <% } %>
                                 <td>Action</td>
                             </tr>
                             <% }); %>

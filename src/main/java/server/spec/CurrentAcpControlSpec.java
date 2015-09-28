@@ -32,7 +32,7 @@ public class CurrentAcpControlSpec extends MessageSpec {
     @Override
     public String toString() {
         String returnString = super.toString();
-        returnString += " , controlNumber : " + getControlNumber() + " , newMode : " + getNewMode() + " }";
+        returnString += " , 'controlNumber' : " + getControlNumber() + " , 'newMode' : '" + getNewMode() + "'}";
         return returnString;
     }
 }

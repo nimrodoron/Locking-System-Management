@@ -1,32 +1,26 @@
 package server.spec;
 
-import com.google.gson.Gson;
-
 /**
  * Created by nimrodoron on 8/20/15.
  */
 public abstract class MessageSpec {
 
-    private String messageName;
+    private String mType;
 
-    public String getMessageName() {
-        return messageName;
+    public String getmType() {
+        return mType;
     }
 
     public MessageSpec() {
 
     }
 
-    public MessageSpec(String messageName) {
-        this.messageName = messageName;
+    public MessageSpec(String mType) {
+        this.mType = mType;
     }
 
-    public void setMessageName(String messageName) {
-        this.messageName = messageName;
+    public void setmType(String mType) {
+        this.mType = mType;
     }
 
-    public String toString() {
-        String returnString = "{ mType : " + messageName;
-        return returnString;
-    }
 }

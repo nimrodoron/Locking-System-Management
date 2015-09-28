@@ -10,15 +10,16 @@ define(
         "sbadmin"
     ], function ($, _, Backbone, DashboardPageTemplate) {
             var AcpModel = Backbone.Model.extend({
-                urlRoot : '/get_all_acp',
+                urlRoot : '/getAllAcps',
                 defaults: {
                     id: '',
                     name: '',
-                    disabled: '',
+                    enabled: '',
                     lat: '',
-                    long: '',
-                    macAddr: '',
-                    currentlyActive: false,
+                    lon: '',
+                    mac: '',
+                    ip_addr: '',
+                    acpclientstatus: '',
                     ports:{
                         port1: '',
                         port2: '',

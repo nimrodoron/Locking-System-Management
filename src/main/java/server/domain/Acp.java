@@ -1,6 +1,9 @@
 package server.domain;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by nimrodoron on 7/19/15.
@@ -19,7 +22,7 @@ public class Acp {
 
     @Column(name = "enabled", nullable = false)
     @Enumerated(EnumType.ORDINAL)
-    private AcpStatus enabled;
+    private ACP_STATUS enabled;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -32,6 +35,42 @@ public class Acp {
 
     @Column(name = "mac", nullable = false)
     private String mac;
+
+    private transient UpdateTimestamp timeStamp = null;
+
+    private transient MODE[] ports = {MODE.CLOSE,MODE.CLOSE,MODE.CLOSE,MODE.CLOSE,MODE.CLOSE};
+
+    @Transient
+    public UpdateTimestamp getTimeStamp() {
+        return timeStamp;
+    }
+
+    @Transient
+    public void setTimeStamp(UpdateTimestamp timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    @Transient
+    public MODE[] getPorts() {
+        return ports;
+    }
+
+    @Transient
+    public void setPorts(MODE[] ports) {
+        this.ports = ports;
+    }
+
+    private transient ACP_CLIENT_STATUS ACPCLIENTSTATUS = ACP_CLIENT_STATUS.OFFLINE;
+
+    @Transient
+    public ACP_CLIENT_STATUS getACPCLIENTSTATUS() {
+        return ACPCLIENTSTATUS;
+    }
+
+    @Transient
+    public void setACPCLIENTSTATUS(ACP_CLIENT_STATUS ACPCLIENTSTATUS) {
+        this.ACPCLIENTSTATUS = ACPCLIENTSTATUS;
+    }
 
     public String getMac() {
         return mac;
@@ -65,11 +104,11 @@ public class Acp {
         this.name = name;
     }
 
-    public AcpStatus getEnabled() {
+    public ACP_STATUS getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(AcpStatus enabled) {
+    public void setEnabled(ACP_STATUS enabled) {
         this.enabled = enabled;
     }
 

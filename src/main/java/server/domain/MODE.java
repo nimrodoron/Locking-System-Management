@@ -5,5 +5,6 @@ package server.domain;
  */
 public enum MODE {
     CLOSE,
-    OPEN
+    OPEN,
+    ERROR
 }

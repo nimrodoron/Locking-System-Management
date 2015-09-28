@@ -1,18 +1,15 @@
 package server.utils;
 
-import ch.qos.logback.core.util.ExecutorServiceUtil;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.lang.reflect.Field;
 import java.util.Map;
-import server.spec.MessageSpec;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Iterator;
+import server.domain.ACP_CLIENT_STATUS;
+import server.domain.MODE;
+import server.spec.MessageSpec;
 
 /**
  * Created by nimrodoron on 8/20/15.
@@ -23,7 +20,7 @@ public class MessageFactory {
         try {
             Class<?> messageClass = Class.forName(messageName);
             Object object = messageClass.newInstance();
-            ((MessageSpec)object).setMessageName(messageName);
+            ((MessageSpec)object).setmType(messageName);
             return (MessageSpec) object;
         }
         catch (Exception Ex) {
@@ -69,6 +66,13 @@ public class MessageFactory {
                         break;
                     case("java.lang.String") :
                         field.set(object, fieldValue.getAsString());
+                        break;
+                    case("server.domain.MODE") :
+                        field.set(object, (MODE.valueOf(fieldValue.getAsString())));
+                        break;
+                    case("server.domain.ACP_CLIENT_STATUS") :
+                        field.set(object, ACP_CLIENT_STATUS.valueOf(fieldValue.getAsString()));
+                        break;
                 }
                 return true;
             } catch (NoSuchFieldException e) {
