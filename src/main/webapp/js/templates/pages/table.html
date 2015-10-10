@@ -14,7 +14,7 @@
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <div class="dataTable_wrapper">
-                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <table class="table table-striped table-bordered table-hover .table-responsive" id="locksTable">
                             <thead>
                             <tr>
                                 <th>Enabled</th>
@@ -29,56 +29,128 @@
                                 <th>Port 5</th>
                             </tr>
                             <% _.each(connectedAcps, function(acp) { %>
-                            <tr class="even gradeC">
 
                                 <% if (acp.enabled == "DISABLED"){ %>
-                                <td style="background-color: red">
+                                <td align='center'>
+                                    <img src="../images/lockDisabled.png"/>
+                                </td>
                                     <% } else { %>
-                                <td style="background-color: greenyellow">
+                                <td align='center'>
+                                    <img src="../images/lockEnabled.png"/>
+                                </td>
                                     <% } %>
 
                                 </td>
                                 <% if (acp.acpclientstatus === "OFFLINE"){ %>
-                                <td style="background-color: red">
-                                    <% } else { %>
-                                <td style="background-color: greenyellow">
-                                    <% } %>
+                            <td align='center'>
+                                <img src="../images/lockDisabled.png"/>
+                            </td>
+                            <% } else { %>
+                            <td align='center'>
+                                <img src="../images/lockEnabled.png"/>
+                            </td>
+                            <% } %>
 
                                 </td>
                                 <td><%= acp.id %></td>
                                 <td><%= acp.name %></td>
                                 <td><%= acp.name %></td>
 
-                                <% if (acp.ports[0] === "CLOSE"){ %>
-                                <td style="background-color: red">
-                                    <% } else { %>
-                                <td style="background-color: greenyellow">
-                                    <% } %>
+                                <% if (acp.ports[0] === "CLOSE" && acp.acpclientstatus === "OFFLINE"){ %>
+                                    <td align='center'>
+                                        <button name="1_port_button" type="button" style="width:100%" class="btn btn-danger disabled">
+                                            Open
+                                            <span style="display:none">{"id" : "<%= acp.id %>", "port" : "1"}</span></button>
+                                    </td>
+                                <% } else if (acp.ports[0] === "CLOSE" && acp.acpclientstatus === "ONLINE") { %>
+                                    <td align='center'>
+                                        <button name="1_port_button"type="button" style="width:100%" class="btn btn-danger openButton">
+                                            Open
+                                            <span style="display:none">{"id" : "<%= acp.id %>", "port" : "1"}</span>
+                                        </button>
+                                    </td>
+                                <% } else { %>
+                                    <td>
+                                        <button name="1_port_button" type="button" style="width:100%" class="btn btn-success closeButton">
+                                            Close
+                                            <span style="display:none">{"id" : "<%= acp.id %>", "port" : "1"}</span>
+                                        </button>
+                                    </td>
+                                <% } %>
 
-                                <% if (acp.ports[1] === "CLOSE"){ %>
-                                <td style="background-color: red">
-                                    <% } else { %>
-                                <td style="background-color: greenyellow">
-                                    <% } %>
+                                <% if (acp.ports[1] === "CLOSE" && acp.acpclientstatus === "OFFLINE"){ %>
+                                    <td align='center'>
+                                    <button name="2_port_button" type="button" style="width:100%" class="btn btn-danger disabled">Open</button>
+                                    </td>
+                                <% } else if (acp.ports[1] === "CLOSE" && acp.acpclientstatus === "ONLINE") { %>
+                                    <td align='center'>
+                                        <button name="2_port_button" type="button" style="width:100%" class="btn btn-danger openButton">
+                                            Open
+                                            <span style="display:none">{"id" : "<%= acp.id %>", "port" : "2"}</span></button>
+                                        </button>
+                                    </td>
+                                <% } else { %>
+                                    <td>
+                                        <button name="2_port_button"  type="button" style="width:100%" class="btn btn-success closeButton">
+                                            Close
+                                            <span style="display:none">{"id" : "<%= acp.id %>", "port" : "2"}</span></button>
+                                        </button>
+                                    </td>
+                                <% } %>
 
-                                <% if (acp.ports[2] === "CLOSE"){ %>
-                                <td style="background-color: red">
-                                    <% } else { %>
-                                <td style="background-color: greenyellow">
-                                    <% } %>
+                                <% if (acp.ports[2] === "CLOSE" && acp.acpclientstatus === "OFFLINE"){ %>
+                                    <td align='center'>
+                                        <button name="3_port_button"  type="button" style="width:100%" class="btn btn-danger disabled">Open</button>
+                                    </td>
+                                <% } else if (acp.ports[2] === "CLOSE" && acp.acpclientstatus === "ONLINE") { %>
+                                    <td align='center'>
+                                        <button name="3_port_button" type="button" style="width:100%" class="btn btn-danger openButton">Open
+                                            <span style="display:none">{"id" : "<%= acp.id %>", "port" : "3"}</span></button>
+                                        </button>
+                                    </td>
+                                <% } else { %>
+                                    <td>
+                                        <button name="3_port_button"  type="button" style="width:100%" class="btn btn-success closeButton">Close
+                                            <span style="display:none">{"id" : "<%= acp.id %>", "port" : "3"}</span></button>
+                                        </button>
+                                    </td>
+                                <% } %>
 
-                                <% if (acp.ports[3] === "CLOSE"){ %>
-                                <td style="background-color: red">
-                                    <% } else { %>
-                                <td style="background-color: greenyellow">
-                                    <% } %>
+                                <% if (acp.ports[3] === "CLOSE" && acp.acpclientstatus === "OFFLINE"){ %>
+                                    <td align='center'>
+                                        <button name="4_port_button"  type="button" style="width:100%" class="btn btn-danger disabled">Open</button>
+                                    </td>
+                                <% } else if (acp.ports[3] === "CLOSE" && acp.acpclientstatus === "ONLINE") { %>
+                                    <td align='center'>
+                                        <button name="4_port_button" type="button" style="width:100%" class="btn btn-danger openButton">Open
+                                            <span style="display:none">{"id" : "<%= acp.id %>", "port" : "4"}</span></button>
+                                        </button>
+                                </td>
+                                <% } else { %>
+                                <td>
+                                    <button name="4_port_button"  type="button" style="width:100%" class="btn btn-success closeButton">Close
+                                        <span style="display:none">{"id" : "<%= acp.id %>", "port" : "4"}</span></button>
+                                    </button>
+                                </td>
+                                <% } %>
 
-                                <% if (acp.ports[4] === "CLOSE"){ %>
-                                <td style="background-color: red">
-                                    <% } else { %>
-                                <td style="background-color: greenyellow">
-                                    <% } %>
-                                <td>Action</td>
+                                <% if (acp.ports[4] === "CLOSE" && acp.acpclientstatus === "OFFLINE"){ %>
+                                    <td align='center'>
+                                        <button name="5_port_button"  type="button" style="width:100%" class="btn btn-danger disabled">Open</button>
+                                    </td>
+                                <% } else if (acp.ports[4] === "CLOSE" && acp.acpclientstatus === "ONLINE") { %>
+                                    <td align='center'>
+                                        <button name="5_port_button" type="button" style="width:100%" class="btn btn-danger openButton">Open
+                                            <span style="display:none">{"id" : "<%= acp.id %>", "port" : "5"}</span></button>
+                                        </button>
+                                    </td>
+                                <% } else { %>
+                                    <td>
+                                        <button name="5_port_button"  type="button" style="width:100%" class="btn btn-success closeButton">Close
+                                            <span style="display:none">{"id" : "<%= acp.id %>", "port" : "5"}</span></button>
+                                        </button>
+                                    </td>
+                                <% } %>
                             </tr>
                             <% }); %>
                             </tbody>

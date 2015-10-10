@@ -14,18 +14,19 @@ define(
                 'click .submit': 'formSubmitted'
             },
             initialize: function () {
+
             },
             initMap: function(){
                 this.map = new olMap.Map({
                     target: 'map',
                     layers: [
                         new olMap.layer.Tile({
-                            source: new olMap.source.OSM()
+                            source: new olMap.OSM()
                         })
                     ],
                     view: new olMap.View({
                         center: olMap.proj.transform([34.830892,32.080463], 'EPSG:4326', 'EPSG:3857'),
-                        zoom: 12
+                        zoom: 6
                     })
                 });
 
