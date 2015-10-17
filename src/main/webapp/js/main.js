@@ -19,12 +19,13 @@ require.config({
        TablePageView: 'views/pages/table',
 
        //collections
-       AcpCollection: 'collections/acp',
+       AcpCollection: 'collections/Acp',
        //routers
        MainRouter: 'router',
 
        //Model
-       AcpModel: 'model/acp',
+       AcpModel: 'model/Acp',
+       CustomOlMap: 'model/CustomOlMap',
 
        //utils
        cssUtils: 'cssUtils',
@@ -47,6 +48,9 @@ require.config({
         },
         'sbadmin':{
             deps:['jquery','bootstrap','metisMenu']
+        },
+        'CustomOlMap':{
+            deps: ['olMap']
         }
 
     }

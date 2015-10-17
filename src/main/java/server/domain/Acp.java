@@ -28,10 +28,10 @@ public class Acp {
     private String name;
 
     @Column(name = "lat")
-    private Long lat;
+    private Double lat;
 
     @Column(name = "lon")
-    private Long lon;
+    private Double lon;
 
     @Column(name = "mac", nullable = false)
     private String mac;
@@ -80,19 +80,19 @@ public class Acp {
         this.mac = mac;
     }
 
-    public Long getLon() {
+    public Double getLon() {
         return lon;
     }
 
-    public void setLon(Long lon) {
+    public void setLon(Double lon) {
         this.lon = lon;
     }
 
-    public Long getLat() {
+    public Double getLat() {
         return lat;
     }
 
-    public void setLat(Long lat) {
+    public void setLat(Double lat) {
         this.lat = lat;
     }
 

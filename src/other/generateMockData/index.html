@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="map"></div>
+    <input type="file" id="fileInput" />
+    <div id="showSql"></div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="mapLogic.js"></script>
+    <script>
+
+        function getRandomData(){
+
+            var randomData = {};
+
+            var ip1 = Math.round(Math.random()*255);
+            var ip2 = Math.round(Math.random()*255);
+            var ip3 = Math.round(Math.random()*255);
+            var ip4 = Math.round(Math.random()*255);
+
+            randomData.ip_addr = ip1+'.'+ip2+'.'+ip3+'.'+ip4;
+            randomData.mac = "00:25:96:FF:FE:12:34:56";
+            randomData.enabled = Math.random() > 0.5 ? 0 : 1;
+
+            return randomData;
+        }
+
+        $( document ).ready(function(){
+
+            $("input:file").change(function (oEvent){
+
+                var fileReader = new FileReader();
+                fileReader.readAsText(oEvent.target.files[0]);
+                fileReader.onload = function(){
+                    var result = fileReader.result;
+                    var splitResults = result.split("\n");
+                    var suffix = splitResults[0];
+                    splitResults.shift();
+
+                    searchList(splitResults, suffix, function(outputPlaces){
+
+                        var PREFIX = "INSERT INTO acp (ip_addr, enabled, name, lat, lon, mac) values ";
+                        outputPlaces.forEach(function(acp){
+
+                            var randomData = getRandomData();
+                            PREFIX += '("'+randomData.ip_addr+'",'+randomData.enabled+',"'+acp.name+'","'+acp.lat+'","'+acp.lon+'","'+randomData.mac+'"),';
+
+                        });
+                        window.prompt("Copy to clipboard: Ctrl+C, Enter", PREFIX.slice(0,PREFIX.length -1));
+                    });
+
+                }
+
+
+            });
+
+
+
+
+        });
+
+    </script>
+
+
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaUX2XKv67ptfkOSzWso077FQYH7N9q9Y&libraries=places&callback=initMap"></script>
+
+
+
+</body>
+</html>
