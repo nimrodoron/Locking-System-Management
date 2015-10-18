@@ -21,6 +21,17 @@ define(
                     zoom: oSettings.view.zoom
                 })
             });
+            this.map.on('singleclick', function(evt){
+
+                var feature = this.map.forEachFeatureAtPixel(evt.pixel,
+                    function(feature, layer) {
+
+                        console.log(feature + layer);
+                        debugger;
+
+
+                    });
+            }.bind(this));
 
         };
         MapWrapper.prototype._drawCircleInMeter = function(lonLatCords) {
@@ -29,11 +40,12 @@ define(
 
             var circle = new ol.geom.Circle(ol.proj.fromLonLat(lonLatCords), 40);
             var circleFeature = new ol.Feature(circle);
-
+            circleFeature.parent = lonLatCords;
             // Source and vector layer
             var vectorSource = new ol.source.Vector({
                 projection: 'EPSG:3857'
             });
+
             vectorSource.addFeature(circleFeature);
             var vectorLayer = new ol.layer.Vector({
                 source: vectorSource,
