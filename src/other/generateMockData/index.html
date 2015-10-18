@@ -7,7 +7,7 @@
 <body>
     <div id="map"></div>
     <input type="file" id="fileInput" />
-    <div id="showSql"></div>
+    <div>Select txt file containing addresses seperated by new line. output will be sql statment containing random values and true geo location in Lon Lat.</div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="mapLogic.js"></script>
     <script>
@@ -23,7 +23,7 @@
 
             randomData.ip_addr = ip1+'.'+ip2+'.'+ip3+'.'+ip4;
             randomData.mac = "00:25:96:FF:FE:12:34:56";
-            randomData.enabled = Math.random() > 0.5 ? 0 : 1;
+            randomData.enabled = Math.random() >= 0.5 ? 0 : 1;
 
             return randomData;
         }
