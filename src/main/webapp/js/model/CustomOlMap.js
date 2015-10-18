@@ -52,7 +52,7 @@ define(
         };
 
         MapWrapper.prototype.createMarkers = function(oAcpArr, sHtmlTemplate){
-
+            this.oAcpArr = oAcpArr;
             oAcpArr.forEach(function(oAcp){
                 this._drawCircleInMeter([oAcp.get('lon'),oAcp.get('lat')]);
             }.bind(this));

@@ -11,15 +11,19 @@ define(
     ], function ($, _, Backbone, TablePageTemplate, AcpModel, AcpCollection) {
 
         var cache;
+        var cachedAcps = null;
 
         var init = function(){
 
             return {
 
-                getAllAcps:  function() {
+                getAllAcps:  function(disabledCache) {
 
                     var oDeferred = new $.Deferred();
-
+                    if (disabledCache !== true && cachedAcps != null) {
+                        oDeferred.resolve(cachedAcps);
+                        return oDeferred.promise();
+                    }
                     var promise = $.ajax({
                         type: 'POST',
                         contentType: 'application/json; charset=utf-8',
@@ -27,7 +31,8 @@ define(
                         url: "/getAllAcps",
                         data: { CSRF: $('#csrf-token').val()},
                         success: function(response) {
-                            oDeferred.resolve(new AcpCollection(response));
+                            cachedAcps =  response;
+                            oDeferred.resolve(cachedAcps);
 
                         }});
                     return oDeferred.promise();

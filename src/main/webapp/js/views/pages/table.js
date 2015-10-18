@@ -7,32 +7,61 @@ define(
         "backbone",
         "text!templates/pages/table.html",
         "AcpCrudService",
-        "libs/spin"
-    ], function ($, _, Backbone, TablePageTemplate, AcpCrudService, Spinner) {
+        "libs/spin",
+        "AcpCollection"
+    ], function ($, _, Backbone, TablePageTemplate, AcpCrudService, Spinner, AcpCollection) {
         return Backbone.View.extend({
 
             spinner : null,
-
             acps: null,
             el: ".page-wrapper",
             events: {
-                'click .submit': 'formSubmitted',
                 'click .openButton' : 'onOpenButtonClick',
                 'click .closeButton' : 'onCloseButtonClick'
             },
+
             initialize: function (options) {
-
-                this.render();
+                this.initModel();
+                if (options && options.el) {
+                    this.el = options.el;
+                }
+                if (typeof(options) ==='undefined' || options.fetchData !== false) {
+                    this.render();
+                }
+                this.renderTable();
             },
+
+            initModel: function() {
+                var that = this;
+                this.acps = new AcpCollection();
+                this.acps.bind("add", function(){
+                    that.renderTable();
+                });
+                this.acps.bind("remove", function(){
+                    that.renderTable();
+                });
+            },
+
+            clearView: function() {
+                this.acps.reset();
+            },
+
             render: function () {
-                var template = _.template(TablePageTemplate);
-                AcpCrudService.getService().getAllAcps().done(function(acpCollection){
-                    this.acps = acpCollection;
-                    this.$el.html(template({"connectedAcps": this.acps.toJSON()}));
 
-                }.bind(this));
+                    AcpCrudService.getService().getAllAcps().done(function(acpCollection){
+                        this.addItems(acpCollection);
+                    }.bind(this));
 
             },
+            addItems: function (acpCollection) {
+                this.acps.add(acpCollection)
+            },
+
+            renderTable: function() {
+                var template = _.template(TablePageTemplate);
+                $(this.el).html(template({"connectedAcps": this.acps.toJSON()}));
+            },
+
             createSpinner :function() {
                 var opts = {
                     lines: 13 // The number of lines to draw
@@ -55,7 +84,7 @@ define(
                     , shadow: false // Whether to render a shadow
                     , hwaccel: false // Whether to use hardware acceleration
                     , position: 'absolute' // Element positioning
-                }
+                };
                 var target = document.getElementById("locksTable");
                 spinner = new Spinner(opts).spin(target);
 
