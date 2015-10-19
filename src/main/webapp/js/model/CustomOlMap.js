@@ -9,6 +9,32 @@ define(
     ], function ($, _, Backbone, ol) {
         var baseLayer = new ol.layer.Tile({source: new ol.source.OSM()});
 
+
+        var MapUtils = {}; MapUtils.Style = {};
+
+        MapUtils.Style.PICKED = new ol.style.Style({
+            stroke: new ol.style.Stroke({
+                color: 'red',
+                width: 4
+            }),
+            fill: new ol.style.Fill({
+                color: 'rgba(117, 205, 4, 0.4)'
+            })
+        });
+
+
+        MapUtils.Style.NOT_PICKED = new ol.style.Style({
+            stroke: new ol.style.Stroke({
+                color: 'blue',
+                width: 4
+            }),
+            fill: new ol.style.Fill({
+                color: 'rgba(117, 205, 4, 0.4)'
+            })
+        });
+
+
+
         var MapWrapper = function(oSettings){
             this.oSettings = oSettings;
             this.map = new ol.Map({
@@ -21,46 +47,42 @@ define(
                     zoom: oSettings.view.zoom
                 })
             });
-            this.map.on('singleclick', function(evt){
+            this.map.on('singleclick', function(oEvent){
 
-                var feature = this.map.forEachFeatureAtPixel(evt.pixel,
-                    function(feature, layer) {
+                this.map.forEachFeatureAtPixel(oEvent.pixel, function(oFeature, oLayer) {
+                    oFeature.setStyle(MapUtils.Style.PICKED);
+                    console.log(oFeature + oLayer);
+                });
 
-                        console.log(feature + layer);
-                        debugger;
-
-
-                    });
             }.bind(this));
 
+            this.oFeatureSource = new ol.source.Vector({
+                projection: 'EPSG:3857'
+            });
+
+            this.oVectorLayer = new ol.layer.Vector({
+                source: this.oFeatureSource
+            });
+
+
+            this.map.addLayer(this.oVectorLayer);
+
+
         };
+
         MapWrapper.prototype._drawCircleInMeter = function(lonLatCords) {
             var view = this.map.getView();
             var projection = view.getProjection();
 
             var circle = new ol.geom.Circle(ol.proj.fromLonLat(lonLatCords), 40);
-            var circleFeature = new ol.Feature(circle);
-            circleFeature.parent = lonLatCords;
-            // Source and vector layer
-            var vectorSource = new ol.source.Vector({
-                projection: 'EPSG:3857'
+            var circleFeature = new ol.Feature({
+                geometry: circle
             });
+            circleFeature.setStyle(MapUtils.Style.NOT_PICKED);
 
-            vectorSource.addFeature(circleFeature);
-            var vectorLayer = new ol.layer.Vector({
-                source: vectorSource,
-                style: new ol.style.Style({
-                    stroke: new ol.style.Stroke({
-                        color: 'blue',
-                        width: 3
-                    }),
-                    fill: new ol.style.Fill({
-                        color: 'rgba(117, 205, 4, 0.4)'
-                    })
-                })
-            });
+            this.oFeatureSource.addFeature(circleFeature);
 
-            this.map.addLayer(vectorLayer);
+
         };
 
         MapWrapper.prototype.createMarkers = function(oAcpArr, sHtmlTemplate){
