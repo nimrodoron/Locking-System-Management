@@ -223,7 +223,7 @@
 
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
-            <ul class="nav" id="side-menu">
+            <ul class="nav metismenu" id="side-menu">
                 <li class="sidebar-search">
                     <div class="input-group custom-search-form">
                         <input type="text" class="form-control" placeholder="Search...">
@@ -238,15 +238,14 @@
                 <li>
                     <a href="#dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
-                <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Locks <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="#locks/1">Lock #1 </a>
-                        </li>
-                        <li>
-                            <a href="#locks/2">Lock #2</a>
-                        </li>
+                <li class="">
+                    <a href="#" aria-expanded="false"><i class="fa fa-bar-chart-o fa-fw"></i> Locks <span class="fa arrow collapsable"></span></a>
+                    <ul class="nav nav-second-level" aria-expanded="false" hidden>
+                        <% _.each(AcpCollection,function(oAcp){ %>
+                            <li>
+                                <a href="#locks/<%= oAcp.id %>"><%= oAcp.name %></a>
+                            </li>
+                        <% }) %>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>

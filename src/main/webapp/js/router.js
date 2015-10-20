@@ -38,9 +38,7 @@ define([
             this.renderView(DashboardPageView,"dashboard");
         },
         renderView: function(view,name){
-            if (this.pageViews[name]){
-                this.pageViews[name].render();
-            } else {
+            if (!this.pageViews[name]){
                 this.pageViews[name] = new view();
             }
             this.currPageView = this.pageViews[name];

@@ -6,12 +6,14 @@ define(
         "underscore",
         "backbone",
         "text!templates/landing-page-template.html",
-        "metisMenu"
-    ], function ($, _, Backbone, LandingPageTemplate) {
+        "AcpCrudService",
+        "AcpCollection",
+        "metisMenu",
+    ], function ($, _, Backbone, LandingPageTemplate, AcpCrudService, AcpCollection) {
         var MainIndexView = Backbone.View.extend({
             el: ".nav-wrapper",
             events: {
-                'click .submit': 'formSubmitted'
+                'click .collapsable': 'onCollapsableClicked'
             },
             initialize: function () {
                 MyGlobal.cssUtils.injectCss("bootstrap.min.css");
@@ -24,9 +26,16 @@ define(
 
             },
             render: function () {
-                var template = _.template(LandingPageTemplate);
-                this.$el.html(template());
-            }
-        })
+                var AcpCrudRef = AcpCrudService.getService();
+                AcpCrudRef.getAllAcps().done(function(aAcps){
+                    var aAcpCollection = new AcpCollection(aAcps);
+                    var template = _.template(LandingPageTemplate);
+                    this.$el.html(template({AcpCollection: aAcpCollection.toJSON()}));
+                }.bind(this));
+            },
+
+            onCollapsableClicked: function(oEvent){
+                $($(oEvent.target).parent().parent().children()[1]).toggle()            }
+        });
         return MainIndexView;
     });
