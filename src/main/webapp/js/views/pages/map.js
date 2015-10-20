@@ -41,7 +41,8 @@ define(
             },
             handleAcpChange: function(oAcp) {
                 this.tableView.clearView();
-                this.tableView.addItems(oAcp);
+                if (oAcp !== null)
+                    this.tableView.addItems(oAcp);
             },
 
             updateMapWithAcp: function(){

@@ -9,8 +9,8 @@ define(
     ], function ($, _, Backbone, ol) {
         var baseLayer = new ol.layer.Tile({source: new ol.source.OSM()});
 
-
-        var MapUtils = {}; MapUtils.Style = {};
+        var MapUtils = {};
+        MapUtils.Style = {};
 
         MapUtils.Style.PICKED = new ol.style.Style({
             stroke: new ol.style.Stroke({
@@ -48,11 +48,22 @@ define(
                 })
             });
             this.map.on('singleclick', function(oEvent){
-
+                var acpClicked = false;
+                var that = this;
                 this.map.forEachFeatureAtPixel(oEvent.pixel, function(oFeature, oLayer) {
+
+                    if (that.oPickedFeature !== null) {
+                        that.oPickedFeature.setStyle(MapUtils.Style.NOT_PICKED);
+                    }
+                    that.oPickedFeature = oFeature;
                     oFeature.setStyle(MapUtils.Style.PICKED);
                     console.log(oFeature + oLayer);
+                    that.oSettings.events.click(oFeature.acpReference);
+                    acpClicked = true;
                 });
+                if (!acpClicked) {
+                    that.oSettings.events.click(null);
+                }
 
             }.bind(this));
 
@@ -67,10 +78,10 @@ define(
 
             this.map.addLayer(this.oVectorLayer);
 
-
+            this.oPickedFeature = null;
         };
 
-        MapWrapper.prototype._drawCircleInMeter = function(lonLatCords) {
+        MapWrapper.prototype._drawCircleInMeter = function(lonLatCords, oAcpReference) {
             var view = this.map.getView();
             var projection = view.getProjection();
 
@@ -78,6 +89,7 @@ define(
             var circleFeature = new ol.Feature({
                 geometry: circle
             });
+            circleFeature.acpReference = oAcpReference;
             circleFeature.setStyle(MapUtils.Style.NOT_PICKED);
 
             this.oFeatureSource.addFeature(circleFeature);
@@ -88,7 +100,7 @@ define(
         MapWrapper.prototype.createMarkers = function(oAcpArr, sHtmlTemplate){
             this.oAcpArr = oAcpArr;
             oAcpArr.forEach(function(oAcp){
-                this._drawCircleInMeter([oAcp.get('lon'),oAcp.get('lat')]);
+                this._drawCircleInMeter([oAcp.get('lon'),oAcp.get('lat')],oAcp);
             }.bind(this));
 
         };
