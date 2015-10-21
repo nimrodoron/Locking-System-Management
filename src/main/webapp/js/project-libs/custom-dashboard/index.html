@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="Tile.js"></script>
+    <link rel="stylesheet" type="text/css" href="Tile.css">
+
+</head>
+<style>
+
+</style>
+<body>
+<script>
+
+    $(document).ready(function () {
+        var max_itr = 20;
+
+
+        var newTile = new CustomUI.Tile({
+            sTitle: "my title",
+            sSubTitle: "my sub title",
+            sBodyText: "my body",
+            bStatus: true,
+            sSrc: "#"
+        });
+        $('.dashboard').html(newTile._getHtml());
+    });
+</script>
+<div class="dashboard">
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+.custom-tile-container {
+    width: 200px;
+    height: 130px;
+    padding: 5px 1px 1px 5px;
+    margin: 5px 5px 5px 5px;
+}
+.tile-container-view{
+    display: -webkit-inline-box;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.glyphicon {
+    font-size: 3.5em;
+}
+.custom-tile-inner-container {
+    background-color: lightblue;
+    height: 100%;
+    width: 100%;
+}
+
+.custom-tile-text-container{
+    height:80%;
+    width:80%;
+    padding-top: 5px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.custom-tile-header {
+    height: 60%;
+    font-family: fantasy;
+}
+
+.custom-tile-sub-header {
+    height: 10%;
+    color: dimgrey;
+}
+
+.custom-tile-body {
+    height: 50%;
+    font-family: cursive;
+    font-size: 15px;
+    font-variant: small-caps;
+}
+
+.custom-tile-footer {
+    float: right;
+    margin-right: 10px;
+    font-family: cursive;
+    font-style: italic;
+}
+.success {
+    color: green;
+}
+.fail {
+    color: red;
+}

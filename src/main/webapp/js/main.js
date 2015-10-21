@@ -1,5 +1,6 @@
 require.config({
    paths: {
+       //libs
        jquery: 'libs/jquery-1.11.2',
        underscore: 'libs/underscore',
        backbone: 'libs/backbone',
@@ -10,6 +11,10 @@ require.config({
        sbadmin: 'libs/sb-admin-2',
        olMap: 'libs/ol',
        Spinner: 'libs/spin',
+
+       //custom libs
+       Tile: 'project-libs/custom-dashboard/Tile',
+       TileView: 'project-libs/custom-dashboard/TileView',
 
        //views
        NavView: 'views/nav',
@@ -25,11 +30,11 @@ require.config({
 
        //Model
        AcpModel: 'model/Acp',
-       CustomOlMap: 'model/CustomOlMap',
+       CustomOlMap: 'project-libs/custom-ol-map',
 
        //utils
        cssUtils: 'cssUtils',
-       AcpCrudService: 'services/AcpCrudService'
+       AcpCrudService: 'services/acp-crud-service'
    },
 
     shim:{
