@@ -16,7 +16,7 @@ define(
             },
             render: function () {
                 var template = _.template(LockPageTemplate);
-                this.$el.html(template());
+                this.$outer_el.html(template());
             }
         })
         return dashboardView;

@@ -1,20 +1,19 @@
 .custom-tile-container {
-    width: 200px;
+/*    width: 200px;
     height: 130px;
     padding: 5px 1px 1px 5px;
-    margin: 5px 5px 5px 5px;
+    margin: 5px 5px 5px 5px;*/
 }
 .tile-container-view{
-    display: -webkit-inline-box;
     cursor: pointer;
     cursor: hand;
+    position: absolute;
 }
 
 .glyphicon {
     font-size: 3.5em;
 }
 .custom-tile-inner-container {
-    background-color: lightblue;
     height: 100%;
     width: 100%;
 }

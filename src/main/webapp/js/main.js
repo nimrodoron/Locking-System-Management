@@ -11,6 +11,7 @@ require.config({
        sbadmin: 'libs/sb-admin-2',
        olMap: 'libs/ol',
        Spinner: 'libs/spin',
+       Chart: 'libs/Chart/Chart',
 
        //custom libs
        Tile: 'project-libs/custom-dashboard/Tile',

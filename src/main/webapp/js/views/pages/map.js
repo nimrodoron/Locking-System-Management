@@ -57,7 +57,7 @@ define(
             },
             render: function () {
                 var template = _.template(MapPageTemplate);
-                this.$el.html(template());
+                this.$outer_el.html(template());
                 MyGlobal.cssUtils.injectCss("mapView.css");
                 MyGlobal.cssUtils.injectCss("ol.css");
                 this.initMap();

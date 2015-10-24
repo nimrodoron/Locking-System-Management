@@ -6,6 +6,7 @@ define(
         "underscore",
         "backbone",
         "text!templates/pages/dashboard.html",
+        "Chart",
         "sbadmin",
         "Tile",
         "TileView"
@@ -16,77 +17,111 @@ define(
                 'click .submit': 'formSubmitted'
             },
             initialize: function () {
-
+                //this.Chartjs = Chart.noConflict();
             },
             render: function () {
                 var template = _.template(DashboardPageTemplate);
-                this.$el.html(template());
+                this.$outer_el.html(template());
                 MyGlobal.cssUtils.injectCss("../js/project-libs/custom-dashboard/Tile.css");
                 this.createActionTiles();
-                this.createStatusTiles();
 
             },
             createActionTiles: function() {
-                var tileContainer = new CustomUI.TileView();
+                var tileContainer = new CustomUI.TileView({
+                    el: '.actions-tiles-container',
+                    iMaxCols: 16
+                });
 
                 var lockAll = new CustomUI.Tile({
                     sTitle: "Lock All",
                     sIcon: "glyphicon-lock",
-                    sBackgroundColor: "gold"
+                    sBackgroundColor: "gold",
+                    bCustomTile: false,
+                    aSize: [4,2]
                 });
 
                 var unlockAll = new CustomUI.Tile({
                     sTitle: "Unlock All",
                     sIcon: "glyphicon-eject",
-                    sBackgroundColor: "darkkhaki"
+                    sBackgroundColor: "darkkhaki",
+                    bCustomTile: false,
+                    aSize: [4,2]
                 });
+
+
+                var pieGraph = new CustomUI.Tile({
+                    sCustomContent: "<canvas class='myPieChart'></canvas>",
+                    sBackgroundColor: "purple",
+                    bCustomTile: true,
+                    aSize: [8,4],
+                    fCallBack: this.createChart.bind(this)
+                });
+
+
 
                 var conntectedAcps = new CustomUI.Tile({
                     sTitle: "20 Connected ACPs",
                     sIcon: "glyphicon-globe",
-                    sBackgroundColor: "greenyellow"
+                    sBackgroundColor: "greenyellow",
+                    bCustomTile: false,
+                    aSize: [4,2]
                 });
 
 
                 var cityCoverage = new CustomUI.Tile({
                     sTitle: "80% City Coverage",
-                    sIcon: "glyphicon-user"
+                    sIcon: "glyphicon-user",
+                    bCustomTile: false,
+                    sBackgroundColor: "salmon",
+                    aSize: [4,2]
                 });
 
 
                 tileContainer.addTile(lockAll);
                 tileContainer.addTile(unlockAll);
+                tileContainer.addTile(pieGraph);
                 tileContainer.addTile(conntectedAcps);
                 tileContainer.addTile(cityCoverage);
+                tileContainer.render();
 
-                this.$el.find('.actions-tiles-container').append(tileContainer.getHtml());
+
+
+
             },
-            createStatusTiles: function(){/*
-                var tileContainer = new CustomUI.TileView();
-                var newTile = new CustomUI.Tile({
-                    sTitle: "Connected ACPs",
-                    sSubTitle: "amount of currently connected acps",
-                    sBodyText: "",
-                    sSrc: "#"
-                });
-                var newTile1 = new CustomUI.Tile({
-                    sTitle: "Disabled ACPs",
-                    sSubTitle: "amount of currently disabled acps",
-                    sBodyText: "",
-                    bStatus: true,
-                    sSrc: "#"
-                });
-                var newTile2 = new CustomUI.Tile({
-                    sTitle: "City Coverage",
-                    sSubTitle: "town shelters availability",
-                    sBodyText: "",
-                    bStatus: true,
-                    sSrc: "#"
-                });
+            createChart: function(){
 
-                tileContainer.addTile(newTile2);
+                var ctx = $(this.el).find('.myPieChart').get(0).getContext("2d");
 
-                this.$el.find('.status-tiles-container').append(tileContainer.getHtml());*/
+
+                var config = {
+                    type: "doughnut",
+                    data: {
+                        datasets: [{
+                            data: [
+                                20,
+                                70,
+                                10
+                            ],
+                            backgroundColor: [
+                                "#FFFF00",
+                                "#9ACD32",
+                                "#F7464A"
+
+                            ]
+                        }],
+                        labels: [
+                            "Disabled",
+                            "Connected",
+                            "Disconnected"
+                        ]
+
+                    },
+                    options: {
+                        responsive: true
+                    }
+                };
+                var myDoughnutChart = new Chart(ctx, config);
+
 
             }
         });

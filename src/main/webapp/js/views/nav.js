@@ -22,7 +22,7 @@ define(
                 MyGlobal.cssUtils.injectCss("font-awesome.css");
 
                 this.render();
-                this.$el.find(".sidebar-nav").metisMenu();
+                this.$outer_el.find(".sidebar-nav").metisMenu();
 
             },
             render: function () {
@@ -30,7 +30,7 @@ define(
                 AcpCrudRef.getAllAcps().done(function(aAcps){
                     var aAcpCollection = new AcpCollection(aAcps);
                     var template = _.template(LandingPageTemplate);
-                    this.$el.html(template({AcpCollection: aAcpCollection.toJSON()}));
+                    this.$outer_el.html(template({AcpCollection: aAcpCollection.toJSON()}));
                 }.bind(this));
             },
 

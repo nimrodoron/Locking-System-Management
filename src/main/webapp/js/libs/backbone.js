@@ -1017,7 +1017,7 @@
     // jQuery delegate for element lookup, scoped to DOM elements within the
     // current view. This should be preferred to global lookups where possible.
     $: function(selector) {
-      return this.$el.find(selector);
+      return this.$outer_el.find(selector);
     },
 
     // Initialize is an empty function by default. Override it with your own
@@ -1034,7 +1034,7 @@
     // Remove this view by taking the element out of the DOM, and removing any
     // applicable Backbone.Events listeners.
     remove: function() {
-      this.$el.remove();
+      this.$outer_el.remove();
       this.stopListening();
       return this;
     },
@@ -1042,9 +1042,9 @@
     // Change the view's element (`this.el` property), including event
     // re-delegation.
     setElement: function(element, delegate) {
-      if (this.$el) this.undelegateEvents();
-      this.$el = element instanceof Backbone.$ ? element : Backbone.$(element);
-      this.el = this.$el[0];
+      if (this.$outer_el) this.undelegateEvents();
+      this.$outer_el = element instanceof Backbone.$ ? element : Backbone.$(element);
+      this.el = this.$outer_el[0];
       if (delegate !== false) this.delegateEvents();
       return this;
     },
@@ -1077,9 +1077,9 @@
         method = _.bind(method, this);
         eventName += '.delegateEvents' + this.cid;
         if (selector === '') {
-          this.$el.on(eventName, method);
+          this.$outer_el.on(eventName, method);
         } else {
-          this.$el.on(eventName, selector, method);
+          this.$outer_el.on(eventName, selector, method);
         }
       }
       return this;
@@ -1089,7 +1089,7 @@
     // You usually don't need to use this, but may wish to if you have multiple
     // Backbone views attached to the same DOM element.
     undelegateEvents: function() {
-      this.$el.off('.delegateEvents' + this.cid);
+      this.$outer_el.off('.delegateEvents' + this.cid);
       return this;
     },
 
