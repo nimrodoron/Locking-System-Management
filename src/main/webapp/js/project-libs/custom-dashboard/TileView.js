@@ -148,6 +148,7 @@ if (typeof(CustomUI) === 'undefined') {
         return true;
 
     };
+
     CustomUI.TileView.prototype.render = function render() {
 
            /* if (!this._containerChanged()) {
@@ -162,12 +163,12 @@ if (typeof(CustomUI) === 'undefined') {
             var _this = this;
             this.TileCollection.forEach(function(oCurrentTile){
 
-                var widthBasicUnits = oCurrentTile.aSize[0];
-                var heightBasicUnits = oCurrentTile.aSize[1];
+                var widthBasicUnits = oCurrentTile.getBasicUnitsWidth();
+                var heightBasicUnits = oCurrentTile.getBasicUnitsHeight();
                 var isAdded=false;
 
                 while (isAdded === false) {
-                    var isAdded = _this.mOccuMatrix.addObj([currentRow,currentCol],[widthBasicUnits,heightBasicUnits]);
+                    isAdded = _this.mOccuMatrix.addObj([currentRow,currentCol],[widthBasicUnits,heightBasicUnits]);
                     if (isAdded === true) {
 
                         oCurrentTile.setPosition({

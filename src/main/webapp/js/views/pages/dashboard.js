@@ -29,7 +29,7 @@ define(
             createActionTiles: function() {
                 var tileContainer = new CustomUI.TileView({
                     el: '.actions-tiles-container',
-                    iMaxCols: 16
+                    iMaxCols: 20
                 });
 
                 var lockAll = new CustomUI.Tile({
@@ -37,7 +37,7 @@ define(
                     sIcon: "glyphicon-lock",
                     sBackgroundColor: "gold",
                     bCustomTile: false,
-                    aSize: [4,2]
+                    aSize: [5,3]
                 });
 
                 var unlockAll = new CustomUI.Tile({
@@ -45,7 +45,7 @@ define(
                     sIcon: "glyphicon-eject",
                     sBackgroundColor: "darkkhaki",
                     bCustomTile: false,
-                    aSize: [4,2]
+                    aSize: [5,3]
                 });
 
 
@@ -53,7 +53,7 @@ define(
                     sCustomContent: "<canvas class='myPieChart'></canvas>",
                     sBackgroundColor: "purple",
                     bCustomTile: true,
-                    aSize: [8,4],
+                    aSize: [10,6],
                     fCallBack: this.createChart.bind(this)
                 });
 
@@ -64,7 +64,7 @@ define(
                     sIcon: "glyphicon-globe",
                     sBackgroundColor: "greenyellow",
                     bCustomTile: false,
-                    aSize: [4,2]
+                    aSize: [5,3]
                 });
 
 
@@ -73,20 +73,20 @@ define(
                     sIcon: "glyphicon-user",
                     bCustomTile: false,
                     sBackgroundColor: "salmon",
-                    aSize: [4,2]
+                    aSize: [5,3]
                 });
 
                 var actionsTable = new CustomUI.Tile({
                     bCustomTile: true,
-                    aSize: [8,4],
-                    sCustomContent: '<div class="panel panel-default"><div class="panel-heading">Latest Actions</div><table class="table"><thead><tr><th>Time</th><th>Action</th><th></th></tr></thead><tbody><tr><td>20/10/15</td><td>Ha Broshim Shelter Locked </td><td><span class="glyphicon glyphicon-lock"></span></td></tr> <tr><td>20/10/15</td><td>Ahad Ha\'am Shelter Locked  </td><td><span class="glyphicon glyphicon-lock"></span></td> </tr> <tr><td>20/10/15</td><td>Bnei Ha Nevi\'im Shelter Locked  </td><td><span class="glyphicon glyphicon-lock"></span></td> </tr> </tbody> </table> </div>'
+                    aSize: [10,4],
+                    sCustomContent: '<div class="panel panel-info"><div class="panel-heading">Latest Actions</div><table class="table"><thead><tr><th>Time</th><th>Action</th><th></th></tr></thead><tbody><tr><td>20/10/15</td><td>Ha Broshim Shelter Locked </td><td><span class="glyphicon glyphicon-lock"></span></td></tr> <tr><td>20/10/15</td><td>Ahad Ha\'am Shelter Locked  </td><td><span class="glyphicon glyphicon-lock"></span></td> </tr> <tr><td>20/10/15</td><td>Bnei Ha Nevi\'im Shelter Locked  </td><td><span class="glyphicon glyphicon-lock"></span></td> </tr> </tbody> </table> </div>'
                 });
 
                 var alarmsTable = new CustomUI.Tile({
                     bCustomTile: true,
                     //sBackgroundColor: "salmon",
-                    aSize: [8,4],
-                    sCustomContent: '<div class="panel panel-default"><div class="panel-heading">Latest Alarms</div><table class="table"><thead><tr><th>Time</th><th>Info</th></tr></thead><tbody><tr><td>20/10/15</td><td>Alarm in Sderot</td></tr> <tr><td>18/10/15</td><td>False Alarm in Raanana</td></tr><tr><td>15/10/15</td><td>Alarm in Rehovot</td> </tr> </tbody> </table> </div>'
+                    aSize: [10,4],
+                    sCustomContent: '<div class="panel panel-warning"><div class="panel-heading">Latest Alarms</div><table class="table"><thead><tr><th>Time</th><th>Info</th></tr></thead><tbody><tr><td>20/10/15</td><td>Alarm in Sderot</td></tr> <tr><td>18/10/15</td><td>False Alarm in Raanana</td></tr><tr><td>15/10/15</td><td>Alarm in Rehovot</td> </tr> </tbody> </table> </div>'
                 });
 
 
@@ -95,9 +95,8 @@ define(
                 tileContainer.addTile(pieGraph);
                 tileContainer.addTile(conntectedAcps);
                 tileContainer.addTile(cityCoverage);
-                tileContainer.addTile(actionsTable);
                 tileContainer.addTile(alarmsTable);
-
+                tileContainer.addTile(actionsTable);
                 tileContainer.render();
 
 

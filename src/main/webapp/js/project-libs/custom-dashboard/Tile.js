@@ -1,21 +1,15 @@
 /**
  * Created by i313712 on 19/10/2015.
  */
-if (typeof(CustomUI) === 'undefined')
+if (typeof(CustomUI) === 'undefined') {
     var CustomUI = {};
-
+}
 (function () {
     'use strict';
 
     CustomUI.Tile = function (oSettings) {
-        this.bCustomTile = oSettings.bCustomTile;
-        this.sCustomContent = oSettings.sCustomContent;
-        this.sTitleText = oSettings.sTitle;
-        this.sIcon = oSettings.sIcon;
-        this.sBackgroundColor = oSettings.sBackgroundColor;
-        this.aSize = oSettings.aSize;
+        this.oSettings = oSettings;
         this.$inner_el = null;
-        this.fCallBack = oSettings.fCallBack;
     };
     CustomUI.Tile.prototype.setContainer = function setContainer(outer_el) {
 
@@ -33,28 +27,28 @@ if (typeof(CustomUI) === 'undefined')
             this.$inner_el = this.$outer_el.find('.'+innerClass);
         }
 
-        this.$inner_el.css('left', this.oPosition.left * CustomUI.ResponsiveGrid.BasicUnit);
-        this.$inner_el.css('top', this.oPosition.top * CustomUI.ResponsiveGrid.BasicUnit);
-        this.$inner_el.css('width', this.aSize[0] * CustomUI.ResponsiveGrid.BasicUnit);
-        this.$inner_el.css('height', this.aSize[1] * CustomUI.ResponsiveGrid.BasicUnit);
+        this.$inner_el.css('left',  (this.oPosition.left * CustomUI.ResponsiveGrid.BasicUnit)+2*this.oPosition.left);
+        this.$inner_el.css('top',  (this.oPosition.top *CustomUI.ResponsiveGrid.BasicUnit)+2*this.oPosition.top);
+        this.$inner_el.css('width', (this.oSettings.aSize[0] * CustomUI.ResponsiveGrid.BasicUnit)+2*(this.oSettings.aSize[0]-1));
+        this.$inner_el.css('height', (this.oSettings.aSize[1] * CustomUI.ResponsiveGrid.BasicUnit)+2*(this.oSettings.aSize[1]-1));
 
-        if (this.fCallBack)
-            this.fCallBack();
+        if (this.oSettings.fCallBack)
+            this.oSettings.fCallBack();
 
     };
 
     CustomUI.Tile.prototype._getHtml = function _getHtml(sUniqueClass) {
         var template = '<div class="custom-tile-container {{sUniqueClass}}" style="position: inherit; background-color: {{sBackgroundColor}};">';
         template = template.replace('{{sUniqueClass}}', sUniqueClass);
-        template = template.replace('{{sBackgroundColor}}', this.sBackgroundColor);
+        template = template.replace('{{sBackgroundColor}}', this.oSettings.sBackgroundColor);
 
-        if (this.bCustomTile) {
-            template = template + this.sCustomContent + '</div>';
+        if (this.oSettings.bCustomTile) {
+            template = template + this.oSettings.sCustomContent + '</div>';
 
         } else {
             template = template + '<div class="custom-tile-inner-container" style=""><div class=\"custom-tile-text-container\"> <div class="custom-tile-header" style="text-align: right;"> <span class="custom-tile-glyphicon glyphicon {{sIcon}}" aria-hidden="true"></span> </div> <div class="custom-tile-body"> {{sTitleText}} </div> </div> </div> </div>';
-            template = template.replace('{{sTitleText}}',this.sTitleText);
-            template = template.replace('{{sIcon}}',this.sIcon);
+            template = template.replace('{{sTitleText}}',this.oSettings.sTitle);
+            template = template.replace('{{sIcon}}',this.oSettings.sIcon);
 
 
         }
@@ -65,8 +59,11 @@ if (typeof(CustomUI) === 'undefined')
       this.oPosition = oPosition;
     };
 
-    CustomUI.Tile.prototype.setCustomContent = function setCustomContent(sTemplate) {
-        this.sCustomContent = sTemplate;
+    CustomUI.Tile.prototype.getBasicUnitsWidth = function getBasicUnitsWidth(){
+        return this.oSettings.aSize[0];
     };
 
+    CustomUI.Tile.prototype.getBasicUnitsHeight = function getBasicUnitsHeight(){
+        return this.oSettings.aSize[1];
+    };
 }());
