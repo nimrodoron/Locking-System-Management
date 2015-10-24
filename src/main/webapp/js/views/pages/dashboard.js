@@ -76,12 +76,28 @@ define(
                     aSize: [4,2]
                 });
 
+                var actionsTable = new CustomUI.Tile({
+                    bCustomTile: true,
+                    aSize: [8,4],
+                    sCustomContent: '<div class="panel panel-default"><div class="panel-heading">Latest Actions</div><table class="table"><thead><tr><th>Time</th><th>Action</th><th></th></tr></thead><tbody><tr><td>20/10/15</td><td>Ha Broshim Shelter Locked </td><td><span class="glyphicon glyphicon-lock"></span></td></tr> <tr><td>20/10/15</td><td>Ahad Ha\'am Shelter Locked  </td><td><span class="glyphicon glyphicon-lock"></span></td> </tr> <tr><td>20/10/15</td><td>Bnei Ha Nevi\'im Shelter Locked  </td><td><span class="glyphicon glyphicon-lock"></span></td> </tr> </tbody> </table> </div>'
+                });
+
+                var alarmsTable = new CustomUI.Tile({
+                    bCustomTile: true,
+                    //sBackgroundColor: "salmon",
+                    aSize: [8,4],
+                    sCustomContent: '<div class="panel panel-default"><div class="panel-heading">Latest Alarms</div><table class="table"><thead><tr><th>Time</th><th>Info</th></tr></thead><tbody><tr><td>20/10/15</td><td>Alarm in Sderot</td></tr> <tr><td>18/10/15</td><td>False Alarm in Raanana</td></tr><tr><td>15/10/15</td><td>Alarm in Rehovot</td> </tr> </tbody> </table> </div>'
+                });
+
 
                 tileContainer.addTile(lockAll);
                 tileContainer.addTile(unlockAll);
                 tileContainer.addTile(pieGraph);
                 tileContainer.addTile(conntectedAcps);
                 tileContainer.addTile(cityCoverage);
+                tileContainer.addTile(actionsTable);
+                tileContainer.addTile(alarmsTable);
+
                 tileContainer.render();
 
 

@@ -34,7 +34,7 @@ if (typeof(CustomUI) === 'undefined') {
         var endRow = startRow + objHeight;
         var endCol = startCol + objWidth;
 
-        if (objWidth > this.iMaxRows) {
+        if (objWidth > this.iMaxCols) {
             if (this._rowEmpty(startRow)) {
                 this._markPosition({
                     startRow: startRow,
@@ -164,12 +164,9 @@ if (typeof(CustomUI) === 'undefined') {
 
                 var widthBasicUnits = oCurrentTile.aSize[0];
                 var heightBasicUnits = oCurrentTile.aSize[1];
-                var itr = 0;
-                while (true) {
-                    itr++;
-                    if (itr = 100){
-                        alert('itr is too big');
-                    }
+                var isAdded=false;
+
+                while (isAdded === false) {
                     var isAdded = _this.mOccuMatrix.addObj([currentRow,currentCol],[widthBasicUnits,heightBasicUnits]);
                     if (isAdded === true) {
 
@@ -183,15 +180,15 @@ if (typeof(CustomUI) === 'undefined') {
                             currentCol=0 ;
                             currentRow++;
                         }
-                        break;
 
                     }
-
-                    if (currentCol < _this.iMaxCols) {
-                        currentCol++;
-                    } else {
-                        currentCol=0 ;
-                        currentRow++;
+                    else {
+                        if (currentCol < _this.iMaxCols) {
+                            currentCol++;
+                        } else {
+                            currentCol=0 ;
+                            currentRow++;
+                        }
                     }
 
                 }

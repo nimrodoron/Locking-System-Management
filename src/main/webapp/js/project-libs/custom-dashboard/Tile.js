@@ -52,7 +52,7 @@ if (typeof(CustomUI) === 'undefined')
             template = template + this.sCustomContent + '</div>';
 
         } else {
-            template = template + '<div class="custom-tile-inner-container" style=""><div class=\"custom-tile-text-container\"> <div class="custom-tile-header" style="text-align: right;"> <span class="glyphicon {{sIcon}}" aria-hidden="true"></span> </div> <div class="custom-tile-body"> {{sTitleText}} </div> </div> </div> </div>';
+            template = template + '<div class="custom-tile-inner-container" style=""><div class=\"custom-tile-text-container\"> <div class="custom-tile-header" style="text-align: right;"> <span class="custom-tile-glyphicon glyphicon {{sIcon}}" aria-hidden="true"></span> </div> <div class="custom-tile-body"> {{sTitleText}} </div> </div> </div> </div>';
             template = template.replace('{{sTitleText}}',this.sTitleText);
             template = template.replace('{{sIcon}}',this.sIcon);
 
